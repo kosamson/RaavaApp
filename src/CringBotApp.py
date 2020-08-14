@@ -19,9 +19,15 @@ async def on_ready():
         if guild.name == GUILD:
             break
     
-    print(f'CRING!!! {client.user} IS HERE!!!')
-    print(f'{guild.name}, id: {guild.id}')
+    # Startup Checks
+    print(f'{client.user} is now connected.')
+    print(f'Connected to Guild: {guild.name}, Guild ID: {guild.id}')
     
+    mainChannelID = int(input('Which text channel would you like this bot to be active? (Enter Channel ID): '))
+    mainChannel = client.get_channel(mainChannelID)
+    await mainChannel.send('TEST MESSAGE')
+    print('Message successfully sent.')
+
 
 # Run bot using token
 client.run(TOKEN)
