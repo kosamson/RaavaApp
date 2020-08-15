@@ -42,7 +42,11 @@ class CringBotApp(discord.Client):
             await message.add_reaction('🇳')
             await message.add_reaction('🇬')
 
-    
+        if (message.content.lower())[1:] == 'shutdown':
+            print('Disconnecting client...')
+            await message.channel.send('Disconnecting client...')
+            await self.close()
+            
     async def on_cring(self, message):
         if 'cring' in message.content.lower():
             await message.channel.send('CRING')
