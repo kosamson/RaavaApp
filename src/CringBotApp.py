@@ -27,7 +27,7 @@ class CringBotApp(discord.Client):
         if message.author == self.user:
             return
 
-        if (self.COMMAND_PREFIX in message.content):
+        if (message.content[0] == self.COMMAND_PREFIX):
             await self.parseCommand(message)
 
         # Check for cring
@@ -42,14 +42,26 @@ class CringBotApp(discord.Client):
             await message.add_reaction('🇳')
             await message.add_reaction('🇬')
 
-        if (message.content.lower())[1:] == 'shutdown':
+        elif (message.content.lower())[1:] == 'shutdown':
             print('Disconnecting client...')
             await message.channel.send('Disconnecting client...')
             await self.close()
+        
+        else:
+            print('ERROR: Invalid command entered')
+            await message.channel.send('ERROR: Invalid command entered')
             
     async def on_cring(self, message):
         if 'cring' in message.content.lower():
             await message.channel.send('CRING')
+
+    @commands.command()
+    async def cring(self, ctx):
+        await message.add_reaction('🇨')
+        await message.add_reaction('🇷')
+        await message.add_reaction('🇮')
+        await message.add_reaction('🇳')
+        await message.add_reaction('🇬')
 
 
 client = CringBotApp()
