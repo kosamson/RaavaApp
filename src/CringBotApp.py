@@ -17,7 +17,7 @@ class CringBotApp(commands.Bot):
     def __init__(self):
         # Command Prefix for CringBot is '+'; 
         # Ex: "+help" -- Runs the "help" command from CringBot
-        super().__init__(command_prefix='+')
+        super().__init__(command_prefix='+', help_command=None)
 
         # Add all commands to Bot
         members = inspect.getmembers(self)
@@ -95,6 +95,20 @@ class CringBotApp(commands.Bot):
         await ctx.message.channel.send('Retrieving Server Icon:')
         await ctx.message.channel.send(ctx.message.guild.icon_url)
 
+    @commands.command()
+    async def help(ctx):
+        commandList = []
+
+        # Append all command names to commandList
+        members = inspect.getmembers(client)
+        for name, member in members:
+            if isinstance(member, commands.Command):
+                if member.parent is None:
+                    commandList.append('+' + str(member))
+
+        # Send DM to command requester containing command info
+        await ctx.message.author.send('**CringBot Commands**:\n' + '\n'.join(commandList))
+        
 
 client = CringBotApp()
 client.run(TOKEN)
