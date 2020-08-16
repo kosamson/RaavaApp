@@ -33,6 +33,9 @@ class CringBotApp(commands.Bot):
         for guild in client.guilds:
             print(f'\tGuild Name: {guild.name}, Guild ID: {guild.id}')
 
+        # Set Bot Status
+        await self.change_presence(activity=discord.Streaming(name="+help", url='https://www.twitch.tv/CringBotApp'))
+
     async def on_message(self, message):
         if message.author == self.user:
             return
