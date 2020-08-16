@@ -9,23 +9,20 @@ from dotenv import load_dotenv
 
 load_dotenv()
     
-# Personal token and guild
+# Load personal token 
 TOKEN = os.getenv('DISCORD_TOKEN')
-GUILD = os.getenv('DISCORD_GUILD')
 
 class CringBotApp(discord.Client):
     # Command Prefix for CringBot is '+'; 
     # Ex: "+help" -- Runs the "help" command from CringBot
     COMMAND_PREFIX = '+'
 
-    async def on_ready(self):
-        for guild in client.guilds:
-            if guild.name == GUILD:
-                break
-        
+    async def on_ready(self):  
         # Startup Checks
         print(f'{client.user} is now connected.')
-        print(f'Connected to Guild: {guild.name}, Guild ID: {guild.id}')
+        print('Connected to Guilds:')
+        for guild in client.guilds:
+            print(f'\tGuild Name: {guild.name}, Guild ID: {guild.id}')
 
     async def on_message(self, message):
         if message.author == self.user:
@@ -66,7 +63,7 @@ class CringBotApp(discord.Client):
 
         elif commandName == 'shutdown':
             if message.author.guild_permissions.administrator:
-                print('Disconnecting client...')
+                print(f'Bot shutting down by command from Guild: {message.guild.name} (Guild ID: {message.guild.id})')
                 await message.channel.send('Disconnecting client...')
                 await self.close()
             
@@ -77,7 +74,7 @@ class CringBotApp(discord.Client):
         elif commandName == 'servericon':
             await message.channel.send('Retrieving Server Icon:')
             await message.channel.send(message.guild.icon_url)
-        
+
         else:
             print('ERROR: Invalid command entered')
             await message.channel.send('ERROR: Invalid command entered')
