@@ -65,9 +65,14 @@ class CringBotApp(discord.Client):
             await prevMessage.add_reaction('🇬')
 
         elif commandName == 'shutdown':
-            print('Disconnecting client...')
-            await message.channel.send('Disconnecting client...')
-            await self.close()
+            if message.author.guild_permissions.administrator:
+                print('Disconnecting client...')
+                await message.channel.send('Disconnecting client...')
+                await self.close()
+            
+            else:
+                print('ERROR: Attempted shutdown of Bot from non-admin user')
+                await message.channel.send('ERROR: Cannot shutdown Bot if not admin user')
 
         elif commandName == 'servericon':
             await message.channel.send('Retrieving Server Icon:')
