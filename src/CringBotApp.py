@@ -2,6 +2,7 @@ import os
 import discord
 import pytz
 import inspect
+import random
 
 from datetime import datetime
 from pytz import timezone
@@ -122,6 +123,12 @@ class CringBotApp(commands.Bot):
         else:
             await ctx.message.channel.send(f'Retrieving `{targetUser.name}#{targetUser.discriminator}`\'s Icon:')
             await ctx.message.channel.send(targetUser.avatar_url)
+
+    @commands.command()
+    async def postcring(ctx):
+        imgIdx = random.randint(1, 24)
+        img = discord.File(f'../postcringimgs/{imgIdx}.jpg', filename=f'{imgIdx}.jpg')
+        await ctx.message.channel.send(file=img)
         
 
 client = CringBotApp()
