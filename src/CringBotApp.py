@@ -68,6 +68,10 @@ class CringBotApp(discord.Client):
             print('Disconnecting client...')
             await message.channel.send('Disconnecting client...')
             await self.close()
+
+        elif commandName == 'servericon':
+            await message.channel.send('Retrieving Server Icon:')
+            await message.channel.send(message.guild.icon_url)
         
         else:
             print('ERROR: Invalid command entered')
