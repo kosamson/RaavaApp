@@ -95,7 +95,7 @@ class CringBotApp(commands.Bot):
     
     @commands.command()
     async def servericon(ctx):
-        await ctx.message.channel.send('Retrieving Server Icon:')
+        await ctx.message.channel.send(f'Retrieving {ctx.message.guild}\'s Server Icon:')
         await ctx.message.channel.send(ctx.message.guild.icon_url)
 
     @commands.command()
@@ -111,6 +111,17 @@ class CringBotApp(commands.Bot):
 
         # Send DM to command requester containing command info
         await ctx.message.author.send('**CringBot Commands**:\n' + '\n'.join(commandList))
+
+    @commands.command()
+    async def getavatar(ctx, userid):
+        targetUser = client.get_user(int(userid))
+
+        if (targetUser == None):
+            await ctx.message.channel.send("**ERROR**: User ID does not match a user in this server, please try again. (Right-click the user and click 'Copy ID' to obtain their ID)")
+
+        else:
+            await ctx.message.channel.send(f'Retrieving `{targetUser.name}#{targetUser.discriminator}`\'s Icon:')
+            await ctx.message.channel.send(targetUser.avatar_url)
         
 
 client = CringBotApp()
