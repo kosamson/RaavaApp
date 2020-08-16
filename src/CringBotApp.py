@@ -1,5 +1,9 @@
 import os
 import discord
+import pytz
+
+from datetime import datetime
+from pytz import timezone
 from discord.ext import commands
 from dotenv import load_dotenv
 
@@ -27,12 +31,26 @@ class CringBotApp(discord.Client):
         if message.author == self.user:
             return
 
-        if (message.content[0] == self.COMMAND_PREFIX):
+        # Check if message is a CringBot command
+        if self.COMMAND_PREFIX in message.content and message.content[0] == self.COMMAND_PREFIX:
             await self.parseCommand(message)
 
-        # Check for cring
+        if message.mention_everyone:
+            await self.logEveryoneMention(message)
+
+        # Check for cring inside message
         else:
             await self.on_cring(message)
+
+    async def logEveryoneMention(self, message):
+        # Get current date and time (datetime object) in PST timezone
+        date = datetime.now(tz=timezone('US/Pacific'))
+
+        # Truncate microsecond and timezone information
+        date = date.replace(microsecond=0, tzinfo=None)
+
+        # Send log message to respective message's text channel
+        await message.channel.send(f'**Mention Everyone Log:** `{message.author}` mentioned everyone on: `{date}` PST')
 
     async def parseCommand(self, message):
         commandName = (message.content.lower())[1:]
@@ -58,14 +76,6 @@ class CringBotApp(discord.Client):
     async def on_cring(self, message):
         if 'cring' in message.content.lower():
             await message.channel.send('CRING')
-
-    @commands.command()
-    async def cring(self, ctx):
-        await message.add_reaction('🇨')
-        await message.add_reaction('🇷')
-        await message.add_reaction('🇮')
-        await message.add_reaction('🇳')
-        await message.add_reaction('🇬')
 
 
 client = CringBotApp()
