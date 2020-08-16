@@ -1,6 +1,7 @@
 import os
 import discord
 import pytz
+import inspect
 
 from datetime import datetime
 from pytz import timezone
@@ -12,10 +13,18 @@ load_dotenv()
 # Load personal token 
 TOKEN = os.getenv('DISCORD_TOKEN')
 
-class CringBotApp(discord.Client):
-    # Command Prefix for CringBot is '+'; 
-    # Ex: "+help" -- Runs the "help" command from CringBot
-    COMMAND_PREFIX = '+'
+class CringBotApp(commands.Bot):
+    def __init__(self):
+        # Command Prefix for CringBot is '+'; 
+        # Ex: "+help" -- Runs the "help" command from CringBot
+        super().__init__(command_prefix='+')
+
+        # Add all commands to Bot
+        members = inspect.getmembers(self)
+        for name, member in members:
+            if isinstance(member, commands.Command):
+                if member.parent is None:
+                    self.add_command(member)
 
     async def on_ready(self):  
         # Startup Checks
@@ -28,16 +37,19 @@ class CringBotApp(discord.Client):
         if message.author == self.user:
             return
 
-        # Check if message is a CringBot command
-        if self.COMMAND_PREFIX in message.content and message.content[0] == self.COMMAND_PREFIX:
-            await self.parseCommand(message)
-
-        if message.mention_everyone:
+        # @everyone log check
+        if message.mention_everyone or '@here' in message.content:
             await self.logEveryoneMention(message)
 
         # Check for cring inside message
         else:
             await self.on_cring(message)
+        
+        # Process message for command input
+        await self.process_commands(message)
+
+    async def on_command_error(self, ctx, exception):
+        await ctx.message.channel.send(f"**ERROR**: Invalid Command `{ctx.message.content}` entered, please see `+help` for a list of valid commands")
 
     async def logEveryoneMention(self, message):
         # Get current date and time (datetime object) in PST timezone
@@ -48,40 +60,40 @@ class CringBotApp(discord.Client):
 
         # Send log message to respective message's text channel
         await message.channel.send(f'**Mention Everyone Log:** `{message.author}` mentioned everyone on: `{date}` PST')
-
-    async def parseCommand(self, message):
-        commandName = (message.content.lower())[1:]
-        if commandName == 'cring':
-            # Get message prior to latest message (message before message that called command)
-            prevMessage = (await message.channel.history(limit=2).flatten())[1]
-            await message.delete()
-            await prevMessage.add_reaction('🇨')
-            await prevMessage.add_reaction('🇷')
-            await prevMessage.add_reaction('🇮')
-            await prevMessage.add_reaction('🇳')
-            await prevMessage.add_reaction('🇬')
-
-        elif commandName == 'shutdown':
-            if message.author.guild_permissions.administrator:
-                print(f'Bot shutting down by command from Guild: {message.guild.name} (Guild ID: {message.guild.id}) by user: {message.author}')
-                await message.channel.send('Disconnecting client...')
-                await self.close()
-            
-            else:
-                print(f'ERROR: Attempted shutdown of Bot from non-admin user: {message.author}')
-                await message.channel.send('ERROR: Cannot shutdown Bot if not admin user')
-
-        elif commandName == 'servericon':
-            await message.channel.send('Retrieving Server Icon:')
-            await message.channel.send(message.guild.icon_url)
-
-        else:
-            print('ERROR: Invalid command entered')
-            await message.channel.send('ERROR: Invalid command entered')
             
     async def on_cring(self, message):
         if 'cring' in message.content.lower():
             await message.channel.send('CRING')
+
+
+    """ BOT COMMANDS """
+
+    @commands.command()
+    async def cring(ctx):
+        # Get message prior to latest message (message before message that called command)
+        prevMessage = (await ctx.message.channel.history(limit=3).flatten())[2]
+        await ctx.message.delete()
+        await prevMessage.add_reaction('🇨')
+        await prevMessage.add_reaction('🇷')
+        await prevMessage.add_reaction('🇮')
+        await prevMessage.add_reaction('🇳')
+        await prevMessage.add_reaction('🇬')
+
+    @commands.command()
+    async def shutdown(ctx):
+        if ctx.message.author.guild_permissions.administrator:
+                print(f'Bot shutting down by command from Guild: {ctx.message.guild.name} (Guild ID: {ctx.message.guild.id}) by user: {ctx.message.author}')
+                await ctx.message.channel.send('Disconnecting client...')
+                await client.close()
+            
+        else:
+            print(f'ERROR: Attempted shutdown of Bot from non-admin user: {ctx.message.author}')
+            await ctx.message.channel.send('ERROR: Cannot shutdown Bot if not admin user')
+    
+    @commands.command()
+    async def servericon(ctx):
+        await ctx.message.channel.send('Retrieving Server Icon:')
+        await ctx.message.channel.send(ctx.message.guild.icon_url)
 
 
 client = CringBotApp()
