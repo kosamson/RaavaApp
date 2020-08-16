@@ -35,14 +35,18 @@ class CringBotApp(discord.Client):
             await self.on_cring(message)
 
     async def parseCommand(self, message):
-        if (message.content.lower())[1:] == 'cring':
-            await message.add_reaction('🇨')
-            await message.add_reaction('🇷')
-            await message.add_reaction('🇮')
-            await message.add_reaction('🇳')
-            await message.add_reaction('🇬')
+        commandName = (message.content.lower())[1:]
+        if commandName == 'cring':
+            # Get message prior to latest message (message before message that called command)
+            prevMessage = (await message.channel.history(limit=2).flatten())[1]
+            await message.delete()
+            await prevMessage.add_reaction('🇨')
+            await prevMessage.add_reaction('🇷')
+            await prevMessage.add_reaction('🇮')
+            await prevMessage.add_reaction('🇳')
+            await prevMessage.add_reaction('🇬')
 
-        elif (message.content.lower())[1:] == 'shutdown':
+        elif commandName == 'shutdown':
             print('Disconnecting client...')
             await message.channel.send('Disconnecting client...')
             await self.close()
