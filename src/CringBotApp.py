@@ -1,4 +1,3 @@
-import os
 import discord
 import pytz
 import inspect
@@ -7,18 +6,14 @@ import random
 from datetime import datetime
 from pytz import timezone
 from discord.ext import commands
-from dotenv import load_dotenv
-
-load_dotenv()
-    
-# Load personal token 
-TOKEN = os.getenv('DISCORD_TOKEN')
 
 class CringBotApp(commands.Bot):
     def __init__(self):
         # Command Prefix for CringBot is '+'; 
         # Ex: "+help" -- Runs the "help" command from CringBot
         super().__init__(command_prefix='+', help_command=None)
+
+        self.COMMAND_PREFIX = '+'
 
         # Add all commands to Bot
         members = inspect.getmembers(self)
@@ -29,9 +24,9 @@ class CringBotApp(commands.Bot):
 
     async def on_ready(self):  
         # Startup Checks
-        print(f'{client.user} is now connected.')
+        print(f'{self.user} is now connected.')
         print('Connected to Guilds:')
-        for guild in client.guilds:
+        for guild in self.guilds:
             print(f'\tGuild Name: {guild.name}, Guild ID: {guild.id}')
 
         # Set Bot Status
@@ -45,8 +40,8 @@ class CringBotApp(commands.Bot):
         if message.mention_everyone or '@here' in message.content:
             await self.logEveryoneMention(message)
 
-        # Check for cring inside message
-        else:
+        # Check for cring inside message (if not a command)
+        if not self.COMMAND_PREFIX in message.content:
             await self.on_cring(message)
         
         # Process message for command input
@@ -75,7 +70,7 @@ class CringBotApp(commands.Bot):
     @commands.command()
     async def cring(ctx):
         # Get message prior to latest message (message before message that called command)
-        prevMessage = (await ctx.message.channel.history(limit=3).flatten())[2]
+        prevMessage = (await ctx.message.channel.history(limit=3).flatten())[1]
         await ctx.message.delete()
         await prevMessage.add_reaction('🇨')
         await prevMessage.add_reaction('🇷')
@@ -88,7 +83,7 @@ class CringBotApp(commands.Bot):
         if ctx.message.author.guild_permissions.administrator:
                 print(f'Bot shutting down by command from Guild: {ctx.message.guild.name} (Guild ID: {ctx.message.guild.id}) by user: {ctx.message.author}')
                 await ctx.message.channel.send('Disconnecting client...')
-                await client.close()
+                await ctx.bot.close()
             
         else:
             print(f'ERROR: Attempted shutdown of Bot from non-admin user: {ctx.message.author}')
@@ -104,7 +99,7 @@ class CringBotApp(commands.Bot):
         commandList = []
 
         # Append all command names to commandList
-        members = inspect.getmembers(client)
+        members = inspect.getmembers(ctx.bot)
         for name, member in members:
             if isinstance(member, commands.Command):
                 if member.parent is None:
@@ -115,7 +110,7 @@ class CringBotApp(commands.Bot):
 
     @commands.command()
     async def getavatar(ctx, userid):
-        targetUser = client.get_user(int(userid))
+        targetUser = ctx.bot.get_user(int(userid))
 
         if (targetUser == None):
             await ctx.message.channel.send("**ERROR**: User ID does not match a user in this server, please try again. (Right-click the user and click 'Copy ID' to obtain their ID)")
@@ -131,5 +126,3 @@ class CringBotApp(commands.Bot):
         await ctx.message.channel.send(file=img)
         
 
-client = CringBotApp()
-client.run(TOKEN)
