@@ -72,7 +72,7 @@ class CringBotApp(commands.Bot):
         await ctx.message.channel.send('CRING')
 
     @commands.command()
-    async def cringreac(ctx):
+    async def cringreact(ctx):
         # Get message prior to latest message (message before message that called command)
         prevMessage = (await ctx.message.channel.history(limit=3).flatten())[1]
         await ctx.message.delete()
