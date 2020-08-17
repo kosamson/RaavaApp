@@ -48,7 +48,7 @@ class CringBotApp(commands.Bot):
         await self.process_commands(message)
 
     async def on_command_error(self, ctx, exception):
-        await ctx.message.channel.send(f"**ERROR**: Invalid Command `{ctx.message.content}` entered, please see `+help` for a list of valid commands")
+        await ctx.message.channel.send(f"**ERROR**: Command doesn't exist or invalid parameters entered, please see `+help` for a list of valid commands")
 
     async def logEveryoneMention(self, message):
         # Get current date and time (datetime object) in PST timezone
@@ -69,6 +69,10 @@ class CringBotApp(commands.Bot):
 
     @commands.command()
     async def cring(ctx):
+        await ctx.message.channel.send('CRING')
+
+    @commands.command()
+    async def cringreac(ctx):
         # Get message prior to latest message (message before message that called command)
         prevMessage = (await ctx.message.channel.history(limit=3).flatten())[1]
         await ctx.message.delete()

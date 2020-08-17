@@ -1,8 +1,8 @@
 import os
-import CringBotApp
 import discord
 
 from dotenv import load_dotenv
+from CringBotApp import CringBotApp
 
 load_dotenv()
     
@@ -10,5 +10,5 @@ load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 
 # Initialize Discord client connection for CringBot
-client = CringBotApp.CringBotApp()
+client = CringBotApp()
 client.run(TOKEN)
