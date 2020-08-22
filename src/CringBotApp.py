@@ -51,14 +51,18 @@ class CringBotApp(commands.Bot):
         await ctx.message.channel.send(f"**ERROR**: Command doesn't exist or invalid parameters entered, please see `+help` for a list of valid commands")
 
     async def logEveryoneMention(self, message):
+        everyoneLog = open(f'../serverlogs/evLog_{message.guild.id}.txt', 'a+')
+
         # Get current date and time (datetime object) in PST timezone
         date = datetime.now(tz=timezone('US/Pacific'))
 
         # Truncate microsecond and timezone information
         date = date.replace(microsecond=0, tzinfo=None)
 
-        # Send log message to respective message's text channel
-        await message.channel.send(f'**Mention Everyone Log:** `{message.author}` mentioned everyone on: `{date}` PST')
+        # Store log message into respective server's log file
+        everyoneLog.write(f'{message.author} mentioned everyone on: {date} PST (UTC-7)\n')
+        
+        everyoneLog.close()
             
     async def on_cring(self, message):
         if 'cring' in message.content.lower():
