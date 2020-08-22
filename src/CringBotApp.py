@@ -6,6 +6,7 @@ import random
 from datetime import datetime
 from pytz import timezone
 from discord.ext import commands
+from pathlib import Path
 
 class CringBotApp(commands.Bot):
     def __init__(self):
@@ -47,6 +48,19 @@ class CringBotApp(commands.Bot):
         # Process message for command input
         await self.process_commands(message)
 
+    async def on_member_remove(self, member):
+        # Get current date and time (datetime object) in PST timezone
+        date = datetime.now(tz=timezone('US/Pacific'))
+
+        # Truncate microsecond and timezone information
+        date = date.replace(microsecond=0, tzinfo=None)
+
+        # Create new server log folder if doesn't exist
+        Path(f'../serverlogs/{member.guild.id}').mkdir(parents=True, exist_ok=True)
+        
+        with open(f'../serverlogs/{member.guild.id}/leaveLog.txt', 'a+') as leaveLog:
+            leaveLog.write(f'{member.name}#{member.discriminator} removed from guild on {date} PST (UTC-7)')
+
     async def on_command_error(self, ctx, exception):
         await ctx.message.channel.send(f"**ERROR**: Command doesn't exist or invalid parameters entered, please see `+help` for a list of valid commands")
 
@@ -57,8 +71,11 @@ class CringBotApp(commands.Bot):
         # Truncate microsecond and timezone information
         date = date.replace(microsecond=0, tzinfo=None)
 
+        # Create new server log folder if doesn't exist
+        Path(f'../serverlogs/{message.guild.id}').mkdir(parents=True, exist_ok=True)
+
         # Store log message into respective server's @everyone log (evLog) file
-        with open(f'../serverlogs/evLog_{message.guild.id}.txt', 'a+') as everyoneLog:
+        with open(f'../serverlogs/{message.guild.id}/everyoneLog.txt', 'a+') as everyoneLog:
             everyoneLog.write(f'{message.author} mentioned everyone on: {date} PST (UTC-7)\n')
 
             
@@ -92,7 +109,7 @@ class CringBotApp(commands.Bot):
                 await ctx.bot.close()
             
         else:
-            print(f'ERROR: Attempted shutdown of Bot from non-admin user: {ctx.message.author}')
+            print(f'**ERROR**: Attempted shutdown of Bot from non-admin user: {ctx.message.author}')
             await ctx.message.channel.send('ERROR: Cannot shutdown Bot if not admin user')
     
     @commands.command()
