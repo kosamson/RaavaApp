@@ -37,7 +37,7 @@ class RaavaApp(commands.Bot):
         if message.author == self.user:
             return
 
-        # @everyone log check
+        # Check if message mentions everyone
         if message.mention_everyone or '@here' in message.content:
             await self.logEveryoneMention(message)
 
