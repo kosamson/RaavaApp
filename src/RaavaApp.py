@@ -8,10 +8,10 @@ from pytz import timezone
 from discord.ext import commands
 from pathlib import Path
 
-class CringBotApp(commands.Bot):
+class RaavaApp(commands.Bot):
     def __init__(self):
-        # Command Prefix for CringBot is '+'; 
-        # Ex: "+help" -- Runs the "help" command from CringBot
+        # Command Prefix for Raava is '+'; 
+        # Ex: "+help" -- Runs the "help" command from Raava
         super().__init__(command_prefix='+', help_command=None)
 
         self.COMMAND_PREFIX = '+'
@@ -31,7 +31,7 @@ class CringBotApp(commands.Bot):
             print(f'\tGuild Name: {guild.name}, Guild ID: {guild.id}')
 
         # Set Bot Status
-        await self.change_presence(activity=discord.Streaming(name="+help", url='https://www.twitch.tv/CringBotApp'))
+        await self.change_presence(activity=discord.Streaming(name="+help", url='https://www.twitch.tv/RaavaApp'))
 
     async def on_message(self, message):
         if message.author == self.user:
@@ -129,7 +129,7 @@ class CringBotApp(commands.Bot):
                     commandList.append('+' + str(member))
 
         # Send DM to command requester containing command info
-        await ctx.message.author.send('**CringBot Commands**:\n' + '\n'.join(commandList))
+        await ctx.message.author.send('**Raava Commands**:\n' + '\n'.join(commandList))
 
     @commands.command()
     async def getavatar(ctx, userid):

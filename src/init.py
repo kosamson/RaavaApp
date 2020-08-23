@@ -2,7 +2,7 @@ import os
 import discord
 
 from dotenv import load_dotenv
-from CringBotApp import CringBotApp
+from RaavaApp import RaavaApp
 
 load_dotenv()
     
@@ -10,5 +10,5 @@ load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 
 # Initialize Discord client connection for CringBot
-client = CringBotApp()
+client = RaavaApp()
 client.run(TOKEN)
