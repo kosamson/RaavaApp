@@ -126,10 +126,10 @@ class RaavaApp(commands.Bot):
         for name, member in members:
             if isinstance(member, commands.Command):
                 if member.parent is None:
-                    commandList.append('+' + str(member))
+                    commandList.append(str(member))
 
-        # Send DM to command requester containing command info
-        await ctx.message.author.send('**Raava Commands**:\n' + '\n'.join(commandList))
+        # Send DM to command requester containing GitHub repo link & command info
+        await ctx.message.author.send('**Raava Commands**:\n' + '\n'.join(commandList) + '\n\n**Documentation:** https://github.com/kosamson/RaavaApp')
 
     @commands.command()
     async def getavatar(ctx, userid):
