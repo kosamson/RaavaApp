@@ -1,7 +1,7 @@
+![Raava Bot Logo](images/raavaLogo.jpg)
+
 # Table of Contents
 * [Raava](#raava)
-=======
-![Raava Bot Logo](images/raavaLogoLarge.jpg)
 
 # Table of Contents
 * [Raava](#raava)
