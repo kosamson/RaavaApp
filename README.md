@@ -1,3 +1,5 @@
+![Raava Bot Logo](https://imgur.com/a/gS8jtje)
+
 # Table of Contents
 * [Raava](#raava)
 
