@@ -1,11 +1,12 @@
-![Raava Bot Logo](images/raavaLogo.jpg)
+<div style="text-align:center">
+    <img src="images/raavaLogo.jpg" height="200" width="250"/>
+</div>
 
 # Table of Contents
 * [Raava](#raava)
 
 # Table of Contents
 * [Raava](#raava)
->>>>>>> 0a4c04be588dcb84adb55e979f492947fca75dcd
 
 <a name="raava"/>
 
