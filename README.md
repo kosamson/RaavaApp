@@ -1,1 +1,9 @@
-RaavaApp is a Discord Bot Application that allows Discord users to add Raava Discord Bot to their servers.
+# Table of Contents
+* [Raava](#raava)
+* [Installation](#installation)
+
+<a name="raava"/>
+
+# Raava
+Raava is a Discord Bot Application that provides basic server information, server logging, and various other fun text-based commands that users can invoke in their personal Discord Servers.
+
