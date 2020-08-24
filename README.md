@@ -1,9 +1,6 @@
-<div style="text-align:center">
-    <img src="images/raavaLogo.jpg" height="200" width="250"/>
-</div>
-
-# Table of Contents
-* [Raava](#raava)
+<p align="center">
+    <img src="images/raavaLogo.jpg" height="200" width="250">
+</p>
 
 # Table of Contents
 * [Raava](#raava)
