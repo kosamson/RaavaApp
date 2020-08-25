@@ -143,7 +143,7 @@ class RaavaApp(commands.Bot):
                     commandList.append(str(member))
 
         # Send DM to command requester containing GitHub repo link & command info
-        await ctx.message.author.send('**Raava Commands**:\n' + '\n'.join(commandList) + '\n\n**Documentation:** https://github.com/kosamson/RaavaApp')
+        await ctx.message.author.send('**Raava Commands**:\n' + '\n'.join(commandList) + '\n\n**More Information:** https://github.com/kosamson/RaavaApp/wiki')
 
     @commands.command()
     async def getavatar(ctx, userid):
