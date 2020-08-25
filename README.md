@@ -39,7 +39,10 @@ Raava enables for file-based logging of different user/server events in your loc
 Logs for each specific server that Raava is connected to are located in a folder labeled by the server's unique ID. For example, the Discord server that has the ID `123456789` will have their respective log files stored in the directory: `RaavaApp\serverlogs\123456789`.
 
 #### \@everyone/\@here Logging
-Whenever a user invokes a mass-ping on the server through the `@everyone` or `@here` commands, Raava will log their Discord username, user discriminator, and a timestamp of when their message containing the mass-ping was sent in the file: `evLog.txt`. 
+Whenever a user invokes a mass-ping on the server through the `@everyone` or `@here` commands, Raava will log their Discord username + discriminator, and a timestamp of when their message containing the mass-ping was sent in the file: `evLog.txt`. 
 
 #### Member Removal Logging
-Whenever a user is kicked, banned, leaves, or is removed in some other fashion, Raava will log their Discord username, user discriminator, and a timestamp of when they were removed in the file `leaveLog.txt`.
+Whenever a user is kicked, banned, leaves, or is removed in some other fashion, Raava will log their Discord username + discriminator, and a timestamp of when they were removed in the file `leaveLog.txt`.
+
+#### Message Deletion Logging
+Whenever a message is deleted inside a server, Raava will log the message author's Discord username + discriminator, time of their message, channel the message was sent to, and a timestamp of when the message was deleted in the file `msgDeleteLog.txt` 

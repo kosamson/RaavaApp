@@ -61,6 +61,20 @@ class RaavaApp(commands.Bot):
         with open(f'../serverlogs/{member.guild.id}/leaveLog.txt', 'a+') as leaveLog:
             leaveLog.write(f'{member.name}#{member.discriminator} removed from guild on {date} PST (UTC-7)')
 
+    async def on_message_delete(self, message):
+        # Get current date and time (datetime object) in PST timezone
+        date = datetime.now(tz=timezone('US/Pacific'))
+
+        # Truncate microsecond and timezone information
+        date = date.replace(microsecond=0, tzinfo=None)
+
+        # Retrieve and truncate message timestamp
+        msgTimeStamp = message.created_at
+        msgTimeStamp = msgTimeStamp.replace(microsecond=0, tzinfo=None)
+
+        with open(f'../serverlogs/{message.guild.id}/msgDeleteLog.txt', 'a+') as msgDeleteLog:
+            msgDeleteLog.write(f'Author: {message.author}, Message Sent: {msgTimeStamp} PST (UTC-7), Channel: {message.channel}, {date} PST (UTC-7)\n')
+
     async def on_command_error(self, ctx, exception):
         await ctx.message.channel.send(f"**ERROR**: Command doesn't exist or invalid parameters entered, please see `+help` for a list of valid commands")
 
