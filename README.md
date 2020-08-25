@@ -4,6 +4,7 @@
 
 # Table of Contents
 * [Raava](#raava)
+* [Installation](#installation)
 * [Commands](#commands)
 * [Logging](#logging)
 
@@ -15,6 +16,53 @@
 </p>
 
 Raava is a Discord Bot Application that provides basic server information, server logging, and various other fun text-based commands that users can invoke in their personal Discord Servers.
+
+<a name="installation"/>
+
+# Installation
+#### Required Software/Tools Prior to Installation 
+Python 3.7+, pip (if not already installed), Discord account
+
+#### Required Python Packages (install using pip) 
+dotenv, discord, pytz 
+
+#### Steps
+##### Creating and Configuring Your RaavaApp Application
+Raava is not currently hosted online, so you must create and configure a Discord Application to host your Bot locally and connect with the code provided in this repository.
+
+1. Clone this repository to an accessible location.
+2. Create a Discord Application to host your Raava Bot on the Discord Developers Portal (click on `New Application` located at: https://discord.com/developers/applications).
+3. Click on the `Bot` tab and obtain your personal Bot Token by clicking `Copy` under the Token subsection.
+    **NOTE: Do NOT post this Token anywhere or reveal it to anyone else, this Token can allow others to take control and make malicious changes to your Bot.**
+4. Open your locally cloned RaavaApp folder and go to the `src` folder.
+5. Open `example.env` in a text editor (Notepad, Notepad++, VS Code, etc.) and replace `INSERT_TOKEN_HERE` with your copied Bot Token.
+6. Rename `example.env` to `.env`.
+
+##### Adding Raava to Your Server
+Your RaavaApp application has now been setup, and now you must add Raava to your Discord server.
+
+1. Go back to your RaavaApp page on the Discord Developers Portal.
+2. Click to the `OAuth2` tab.
+3. Check the *bot* checkbox under the **Scopes** subsection.
+4. Check the *Administrator* checkbox under the **Bot Permissions** subsection (which should have appeared after you checked the previous checkbox).
+5. Click the `Copy` button next to the URL generated under the **Scopes** subsection and paste it into your browser's navigation bar.  
+6. Press Enter, and on the proceeding webpage, select the server you wish to add Raava to.
+7. Click `Authorize` 
+
+##### Starting Raava
+Raava has now been successfully added to your server, and now you just need to start the Bot!
+1. Open up your operating system's command line utility/terminal (Windows: Command Prompt, Mac & Linux: Terminal)
+2. Navigate to your local cloned directory of this RaavaApp repository (using the `cd` command)
+3. Navigate to the `src` directory
+4. Enter into console: python init.py
+
+You're done! Raava is now online in your server and should display a startup message that looks like this (except with your unique name for Raava and server you connected it to):
+
+<p>
+    <img src="images/raavaStartup.jpg">
+</p>
+
+Now you can perform any of Raava's utilities on your own server and modify it if you wish. If you want to shut down Raava before turning off your computer, use the `+shutdown` command. Repeat the steps under the **Starting Raava** section to restart Raava again. 
 
 <a name="commands"/>
 

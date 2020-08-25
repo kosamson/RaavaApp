@@ -1,4 +1,4 @@
 .vscode/
 serverlogs/
-*.env
+.env
 FeatureIdeas.txt
