@@ -5,6 +5,7 @@
 # Table of Contents
 * [Raava](#raava)
 * [Installation](#installation)
+* [Usage](#usage)
 * [Commands](#commands)
 * [Logging](#logging)
 
@@ -49,19 +50,26 @@ Your RaavaApp application has now been setup, and now you must add Raava to your
 7. Click `Authorize` 
 
 #### Section 3: Starting Raava
-Raava has now been successfully added to your server, and now you just need to start the Bot!
+Raava has now been successfully added to your server, and now you just need to start the Bot! For the final steps, see the <a href="#usage">**Usage**</a> section.
+
+<a name="usage"/>
+
+# Usage
+Raava's Bot capabilities can be started using the command line.
+
+#### Steps
 1. Open up your operating system's command line utility/terminal (Windows: Command Prompt, Mac & Linux: Terminal)
 2. Navigate to your local cloned directory of this RaavaApp repository (using the `cd` command)
 3. Navigate to the `src` directory
-4. Enter into console: python init.py
+4. Enter into console: `python init.py`
 
-You're done! Raava is now online in your server and should display a startup message that looks like this (except with your unique name for Raava and server you connected it to):
+Raava will now be connected to the Discord client and online in your server. Upon successful launch, your terminal will display a startup message that looks like this (except with your unique name for Raava and server you connected it to):
 
 <p>
     <img src="images/raavaStartup.jpg">
 </p>
 
-Now you can perform any of Raava's utilities on your own server and modify it if you wish. If you want to shut down Raava before turning off your computer, use the `+shutdown` command. Repeat the steps under the **Section 3: Starting Raava** section to restart Raava again. 
+Now you can perform any of Raava's utilities on your server. If you want to shut down Raava from your server, use the `+shutdown` command. Then, if you want to restart Raava, simply repeat the steps listed in this section.
 
 <a name="commands"/>
 
