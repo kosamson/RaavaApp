@@ -1,3 +1,5 @@
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 <p align="center">
     <img src="images/raavaLogoNoBG.png" height="250" width="312.5">
 </p>
@@ -57,7 +59,7 @@ Raava's Bot capabilities can be started using the command line.
 
 #### Steps
 1. Open up your operating system's command line utility/terminal (Windows: Command Prompt, Mac & Linux: Terminal)
-2. Navigate to your local cloned directory of this RaavaApp repository (using the `cd` command)
+2. Navigate to your local cloned directory of this RaavaApp repository
 3. Navigate to the `src` directory
 4. Enter into console: `python init.py`
 
