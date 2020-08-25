@@ -5,13 +5,13 @@
 </p>
 
 # Table of Contents
-* [Raava](#raava)
+* [Project Description](#project-description)
 * [Installation](#installation)
 * [Usage](#usage)
 
-<a name="raava"/>
+<a name="project-description"/>
 
-# Raava
+# Project Description
 <p>
     <img src="images/raavaOnline.jpg">
 </p>
