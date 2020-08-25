@@ -26,8 +26,7 @@ Python 3.7+, pip (if not already installed), Discord account
 #### Required Python Packages (install using pip) 
 dotenv, discord, pytz 
 
-#### Steps
-##### Creating and Configuring Your RaavaApp Application
+#### Creating and Configuring Your RaavaApp Application
 Raava is not currently hosted online, so you must create and configure a Discord Application to host your Bot locally and connect with the code provided in this repository.
 
 1. Clone this repository to an accessible location.
@@ -38,7 +37,7 @@ Raava is not currently hosted online, so you must create and configure a Discord
 5. Open `example.env` in a text editor (Notepad, Notepad++, VS Code, etc.) and replace `INSERT_TOKEN_HERE` with your copied Bot Token.
 6. Rename `example.env` to `.env`.
 
-##### Adding Raava to Your Server
+#### Adding Raava to Your Server
 Your RaavaApp application has now been setup, and now you must add Raava to your Discord server.
 
 1. Go back to your RaavaApp page on the Discord Developers Portal.
@@ -49,7 +48,7 @@ Your RaavaApp application has now been setup, and now you must add Raava to your
 6. Press Enter, and on the proceeding webpage, select the server you wish to add Raava to.
 7. Click `Authorize` 
 
-##### Starting Raava
+#### Starting Raava
 Raava has now been successfully added to your server, and now you just need to start the Bot!
 1. Open up your operating system's command line utility/terminal (Windows: Command Prompt, Mac & Linux: Terminal)
 2. Navigate to your local cloned directory of this RaavaApp repository (using the `cd` command)
