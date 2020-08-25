@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="images/raavaLogo.jpg" height="200" width="250">
+    <img src="images/raavaLogoNoBG.png" height="300" width="375">
 </p>
 
 # Table of Contents
