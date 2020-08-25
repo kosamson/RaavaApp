@@ -10,7 +10,10 @@
 <a name="raava"/>
 
 # Raava
-<img src="images/raavaOnline.jpg">
+<p>
+    <img src="images/raavaOnline.jpg">
+</p>
+
 Raava is a Discord Bot Application that provides basic server information, server logging, and various other fun text-based commands that users can invoke in their personal Discord Servers.
 
 <a name="commands"/>
