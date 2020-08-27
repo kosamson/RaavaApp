@@ -16,7 +16,9 @@
     <img src="images/raavaOnline.jpg">
 </p>
 
-Raava is a Discord Bot Application that provides basic server information, server logging, and various other fun text-based commands that users can call in their personal Discord Servers. Detailed information about this application's features and utilities can be found at <a href="https://github.com/kosamson/RaavaApp/wiki">this project's wiki</a>.
+Raava is a Discord Bot Application providing extensive event logging capabilities for participating Discord Servers. Raava expands upon the logging capabilities of Discord's "Audit Log" feature to support server administrators. 
+
+This application is written in Python leveraging the Discord API through the discord.py library and is hosted locally as a desktop Python application. Detailed information about this application's features and utilities can be found at <a href="https://github.com/kosamson/RaavaApp/wiki">this project's wiki</a>.
 
 <a name="installation"/>
 
