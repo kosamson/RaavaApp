@@ -70,7 +70,9 @@ python init.py
 
 Raava will now be connected to the Discord client and online in your server. Upon successful launch, your terminal will display a startup message that looks like this (except with your unique name for Raava and server you connected it to): 
 ```
-Raava#1234 is now connected.\nConnected to Guilds:\n\tGuild Name: Example Guild, Guild ID: 123456789987654321
+Raava#1234 is now connected.
+Connected to Guilds:
+    Guild Name: Example Guild, Guild ID: 123456789987654321
 ```
 
 Now you can perform any of Raava's utilities on your server. If you want to shut down Raava from your server, use the `+shutdown` command. A successful shutdown will print this into your terminal window:
