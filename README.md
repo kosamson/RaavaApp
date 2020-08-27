@@ -9,7 +9,7 @@
 * [Installation](#installation)
 * [Usage](#usage)
 
-<a name="project-description"/>
+<a name="project-description"></a>
 
 # Project Description
 <p>
@@ -20,7 +20,7 @@ Raava is a Discord Bot Application providing extensive event logging capabilitie
 
 This application is written in **Python** leveraging the **Discord API** through the **discord.py** wrapper library and is hosted locally as a desktop Python application. Detailed information about this application's features and utilities can be found at <a href="https://github.com/kosamson/RaavaApp/wiki">this project's wiki</a>.
 
-<a name="installation"/>
+<a name="installation"></a>
 
 # Installation
 #### Required Software/Tools Prior to Installation 
@@ -54,7 +54,7 @@ Your RaavaApp application has now been setup, and now you must add Raava to your
 #### Section 3: Starting Raava
 Raava has now been successfully added to your server, and now you just need to start the Bot! For the final steps, see the <a href="#usage">**Usage**</a> section.
 
-<a name="usage"/>
+<a name="usage"/></a>
 
 # Usage
 Raava's Bot capabilities can be started using the command line.
