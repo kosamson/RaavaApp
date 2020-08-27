@@ -64,13 +64,19 @@ Raava's Bot capabilities can be started using the command line.
 2. Navigate to your local cloned directory of this RaavaApp repository
 3. Navigate to the `src` directory
 4. Enter into console: 
-```python init.py```
+```
+python init.py
+```
 
 Raava will now be connected to the Discord client and online in your server. Upon successful launch, your terminal will display a startup message that looks like this (except with your unique name for Raava and server you connected it to): 
-```Raava#1234 is now connected.\nConnected to Guilds:\n\tGuild Name: Example Guild, Guild ID: 123456789987654321```
+```
+Raava#1234 is now connected.\nConnected to Guilds:\n\tGuild Name: Example Guild, Guild ID: 123456789987654321
+```
 
 Now you can perform any of Raava's utilities on your server. If you want to shut down Raava from your server, use the `+shutdown` command. A successful shutdown will print this into your terminal window:
-```Bot shutting down by command from Guild: Example Guild (Guild ID: 123456789987654321) by user: someguy#4321```
+```
+Bot shutting down by command from Guild: Example Guild (Guild ID: 123456789987654321) by user: someguy#4321
+```
 
 Then, if you want to restart Raava, simply repeat the steps listed in this section.
 
