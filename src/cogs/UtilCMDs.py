@@ -1,7 +1,6 @@
 import discord
 import os
 import random
-import inspect
 
 from discord.ext import commands
 

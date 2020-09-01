@@ -77,3 +77,48 @@ class Logging(commands.Cog):
         # Store log message into respective server's message edit log (msgEditLog) file
         with open(f'../serverlogs/{before.guild.id}/msgEditLog.txt', 'a+') as msgEditLog:
             msgEditLog.write(f'{before.author}\'s original message: "{before.content}" to "{after.content}" in {before.channel} was edited on: {date} PST (UTC-7)\n')
+
+    @commands.command()
+    async def printlog(self, ctx, logName, numLines=None):
+        msg = ctx.message.content
+
+        if ('everyone' in msg):
+            await self.printHelper(ctx, 'everyoneLog', numLines)
+        
+        elif ('leave' in msg):
+            await self.printHelper(ctx, 'leaveLog', numLines)
+
+        elif ('delete' in msg):
+            await self.printHelper(ctx, 'msgDeleteLog', numLines)
+
+        elif ('edit' in msg):
+            await self.printHelper(ctx, 'msgEditLog', numLines)
+
+        else:
+            await ctx.message.channel.send('**ERROR**: Invalid log name. Valid names: `everyone`, `leave`, `delete`, `edit`.')
+    
+    async def printHelper(self, ctx, fileName, numLines):
+        # Print entire log
+        if numLines == None:
+            with open(f'../serverlogs/{ctx.message.guild.id}/{fileName}.txt', 'r') as log:
+                logVal = ''
+                logVal += '```'
+
+                for line in log:
+                    logVal += line
+
+                logVal += '```'
+
+                await ctx.message.channel.send(logVal)
+
+        else:
+            with open(f'../serverlogs/{ctx.message.guild.id}/{fileName}.txt', 'r') as log:
+                logVal = '```'
+
+                for i in range(int(numLines)):
+                    logVal += log.readline()
+
+                logVal += '```'
+
+                await ctx.message.channel.send(logVal)
+
