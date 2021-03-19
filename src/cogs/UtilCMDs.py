@@ -74,5 +74,5 @@ class UtilCMDs(commands.Cog):
     @commands.command()
     async def postcring(self, ctx):
         imgIdx = random.randint(1, 24)
-        img = discord.File(f'../images/postcringimgs/{imgIdx}.jpg', filename=f'{imgIdx}.jpg')
+        img = discord.File(f'images/postcringimgs/{imgIdx}.jpg', filename=f'{imgIdx}.jpg')
         await ctx.message.channel.send(file=img)

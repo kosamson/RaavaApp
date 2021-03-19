@@ -28,10 +28,10 @@ class Logging(commands.Cog):
         date = date.replace(microsecond=0, tzinfo=None)
 
         # Create new server log folder if doesn't exist
-        Path(f'../serverlogs/{message.guild.id}').mkdir(parents=True, exist_ok=True)
+        Path(f'serverlogs/{message.guild.id}').mkdir(parents=True, exist_ok=True)
 
         # Store log message into respective server's @everyone log (evLog) file
-        with open(f'../serverlogs/{message.guild.id}/everyoneLog.txt', 'a+') as everyoneLog:
+        with open(f'serverlogs/{message.guild.id}/everyoneLog.txt', 'a+') as everyoneLog:
             everyoneLog.write(f'{message.author} mentioned everyone on: {date} PST (UTC-7)\n')
 
     @commands.Cog.listener('on_member_remove')
@@ -43,9 +43,9 @@ class Logging(commands.Cog):
         date = date.replace(microsecond=0, tzinfo=None)
 
         # Create new server log folder if doesn't exist
-        Path(f'../serverlogs/{member.guild.id}').mkdir(parents=True, exist_ok=True)
+        Path(f'serverlogs/{member.guild.id}').mkdir(parents=True, exist_ok=True)
         
-        with open(f'../serverlogs/{member.guild.id}/leaveLog.txt', 'a+') as leaveLog:
+        with open(f'serverlogs/{member.guild.id}/leaveLog.txt', 'a+') as leaveLog:
             leaveLog.write(f'{member.name}#{member.discriminator} removed from guild on {date} PST (UTC-7)')
 
     @commands.Cog.listener('on_message_delete')
@@ -60,7 +60,7 @@ class Logging(commands.Cog):
         msgTimeStamp = message.created_at
         msgTimeStamp = msgTimeStamp.replace(microsecond=0, tzinfo=None)
 
-        with open(f'../serverlogs/{message.guild.id}/msgDeleteLog.txt', 'a+') as msgDeleteLog:
+        with open(f'serverlogs/{message.guild.id}/msgDeleteLog.txt', 'a+') as msgDeleteLog:
             msgDeleteLog.write(f'Author: {message.author}, Message Sent: {msgTimeStamp} PST (UTC-7), Channel: {message.channel}, Deleted On: {date} PST (UTC-7)\n')
 
     @commands.Cog.listener('on_message_edit')
@@ -75,7 +75,7 @@ class Logging(commands.Cog):
         Path(f'../serverlogs/{before.guild.id}').mkdir(parents=True, exist_ok=True)
 
         # Store log message into respective server's message edit log (msgEditLog) file
-        with open(f'../serverlogs/{before.guild.id}/msgEditLog.txt', 'a+') as msgEditLog:
+        with open(f'serverlogs/{before.guild.id}/msgEditLog.txt', 'a+') as msgEditLog:
             msgEditLog.write(f'{before.author}\'s original message: "{before.content}" to "{after.content}" in {before.channel} was edited on: {date} PST (UTC-7)\n')
 
     @commands.command()
@@ -100,7 +100,7 @@ class Logging(commands.Cog):
     async def printHelper(self, ctx, fileName, numLines):
         # Print entire log
         if numLines == None:
-            with open(f'../serverlogs/{ctx.message.guild.id}/{fileName}.txt', 'r') as log:
+            with open(f'serverlogs/{ctx.message.guild.id}/{fileName}.txt', 'r') as log:
                 logVal = ''
                 logVal += '```'
 
@@ -112,7 +112,7 @@ class Logging(commands.Cog):
                 await ctx.message.channel.send(logVal)
 
         else:
-            with open(f'../serverlogs/{ctx.message.guild.id}/{fileName}.txt', 'r') as log:
+            with open(f'serverlogs/{ctx.message.guild.id}/{fileName}.txt', 'r') as log:
                 logVal = '```'
 
                 for i in range(int(numLines)):

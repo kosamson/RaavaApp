@@ -10,7 +10,7 @@ class RaavaApp(commands.Bot):
         super().__init__(command_prefix='+', help_command=None)
 
         # Load Cogs
-        for fileName in os.listdir('./cogs'):
+        for fileName in os.listdir('src/cogs'):
             if (fileName.endswith('.py')):
                 # Truncate '.py' from file name
                 cog = fileName[:len(fileName) - 3]
