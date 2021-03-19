@@ -1,10 +1,7 @@
 import os
 import discord
 
-from dotenv import load_dotenv
 from RaavaApp import RaavaApp
-
-load_dotenv()
     
 # Load personal token 
 TOKEN = os.getenv('DISCORD_TOKEN')
