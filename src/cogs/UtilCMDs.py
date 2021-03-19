@@ -58,7 +58,7 @@ class UtilCMDs(commands.Cog):
     @commands.command()
     async def help(self, ctx):
         # Send DM to command requester containing GitHub wiki link 
-        await ctx.message.author.send('**Commands available at Raava\'s GitHub Wiki Page:**\nhttps://github.com/kosamson/raava-app/wiki')
+        await ctx.message.author.send('**Commands are available at Raava\'s GitHub Wiki Page:**\nhttps://github.com/kosamson/raava-app/wiki')
 
     @commands.command()
     async def getavatar(self, ctx, userid):
