@@ -72,7 +72,7 @@ class Logging(commands.Cog):
         date = date.replace(microsecond=0, tzinfo=None)
 
         # Create new server log folder if doesn't exist
-        Path(f'../serverlogs/{before.guild.id}').mkdir(parents=True, exist_ok=True)
+        Path(f'serverlogs/{before.guild.id}').mkdir(parents=True, exist_ok=True)
 
         # Store log message into respective server's message edit log (msgEditLog) file
         with open(f'serverlogs/{before.guild.id}/msgEditLog.txt', 'a+') as msgEditLog:
